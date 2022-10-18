@@ -17,15 +17,8 @@ export class TicketSeller {
   // }
 
   sellTo(audience: Audience) {
-    if (audience.getBag().hasInvitation()) {
-      const ticket = this.ticketOffice.getTicket();
-      audience.getBag().setTicket(ticket);
-      audience.getBag().removeInvitation();
-    } else {
-      const ticket = this.ticketOffice.getTicket();
-      audience.getBag().minusAmount(ticket.getFee());
-      this.ticketOffice.plusAmount(ticket.getFee());
-      audience.getBag().setTicket(ticket);
-    }
+    const ticket = this.ticketOffice.getTicket();
+    const fee = audience.buy(ticket);
+    this.ticketOffice.plusAmount(fee);
   }
 }
