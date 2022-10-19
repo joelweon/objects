@@ -12,13 +12,7 @@ export class TicketSeller {
     this.ticketOffice = ticketOffice;
   }
 
-  // getTicketOffice() {
-  //   return this.ticketOffice;
-  // }
-
   sellTo(audience: Audience) {
-    const ticket = this.ticketOffice.getTicket();
-    const fee = audience.buy(ticket);
-    this.ticketOffice.plusAmount(fee);
+    this.ticketOffice.sellTicketTo(audience);
   }
 }

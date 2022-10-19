@@ -1,4 +1,5 @@
 import {Ticket} from "./Ticket";
+import {Audience} from "./Audience";
 
 /**
  * 매표소는 티켓과 판매 금액 보관
@@ -12,15 +13,20 @@ export class TicketOffice {
     this.tickets = tickets;
   }
 
-  getTicket() {
+  sellTicketTo(audience: Audience) {
+    const fee = audience.buy(this.getTicket());
+    this.plusAmount(fee);
+  }
+
+  private getTicket() {
     return this.tickets.pop();
   }
 
-  plusAmount(amount: number) {
+  private plusAmount(amount: number) {
     this.amount += amount;
   }
 
-  minusAmount(amount: number) {
+  private minusAmount(amount: number) {
     this.amount -= amount;
   }
 }

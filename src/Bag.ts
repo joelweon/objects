@@ -15,28 +15,40 @@ export class Bag {
     this.amount = amount
     this.invitation = invitation
   }
+  
+  hold(ticket: Ticket) {
+    if (this.hasInvitation()) {
+      this.setTicket(ticket);
+      this.removeInvitation();
+      return 0;
+    } else {
+      this.setTicket(ticket);
+      this.minusAmount(ticket.getFee());
+      return ticket.getFee();
+    }
+  }
 
-  hasInvitation() {
+  private hasInvitation() {
     return this.invitation;
   }
 
-  removeInvitation() {
+  private removeInvitation() {
     this.invitation = null;
   }
 
-  hasTicket() {
+  private hasTicket() {
     return this.ticket;
   }
 
-  setTicket(ticket: Ticket) {
+  private setTicket(ticket: Ticket) {
     this.ticket = ticket;
   }
 
-  minusAmount(amount: number) {
+  private minusAmount(amount: number) {
     this.amount -= amount;
   }
 
-  plusAmount(amount: number) {
+  private plusAmount(amount: number) {
     this.amount += amount;
   }
 
